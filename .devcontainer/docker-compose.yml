@@ -27,6 +27,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.tidb
+    volumes:
+      - ./tidb_data:/root/.tiup/data
     expose:
       - 2379
       - 3000

@@ -11,7 +11,7 @@ RUN apt-get update \
 # ...
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /tidb
 
 # Copy files or directories into the container
 # ...
@@ -30,6 +30,7 @@ RUN curl -O -L https://tiup-mirrors.pingcap.com/install.sh
 RUN chmod +x install.sh
 RUN ./install.sh
 RUN cp /root/.tiup/bin/tiup /usr/local/bin/tiup
+RUN tiup update --all
 
 # Start the application
-CMD ["tiup", "playground", "--host", "0.0.0.0"]
+CMD ["tiup", "playground", "--host", "0.0.0.0", "--tag", "current"]

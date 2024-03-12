@@ -38,5 +38,6 @@
 /node_modules/*
 
 /.devcontainer/caddy_data/*
+/.devcontainer/tidb_data/*
 
 /*/.DS_Store
