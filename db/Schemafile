@@ -2,12 +2,25 @@
 # vi: set ft=ruby :
 # frozen_string_literal: true
 
+default_options = {
+  force: :cascade,
+  collation: 'utf8mb4_bin',
+  id: :string,
+  limit: 36,
+  default: -> { 'UUID()' }
+}
+
 # ActiveRecordSessionStore
-create_table :sessions, force: :cascade, id: false do |t|
-  t.binary :id, limit: 16, null: false, default: -> { 'UUID()' }, primary_key: true
+create_table :sessions, **default_options do |t|
   t.string :session_id, null: false
   t.text :data
   t.timestamps
 end
 add_index :sessions, :session_id, unique: true
 add_index :sessions, :updated_at
+
+create_table :articles, **default_options do |t|
+  t.string :title
+  t.text :body
+  t.timestamps
+end
